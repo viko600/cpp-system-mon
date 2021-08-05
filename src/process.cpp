@@ -26,7 +26,7 @@ float Process::CpuUtilization() {
     float total = cpu[0] + cpu[1] + cpu[2] + cpu[3];
     float time = start - cpu[4];
 
-    return 100 * (total/time);
+    return total/time;
     
 }
 

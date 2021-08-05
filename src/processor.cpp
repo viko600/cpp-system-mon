@@ -7,7 +7,7 @@ using namespace std::chrono;
 using namespace std::this_thread;
 
 // TODO: Return the aggregate CPU utilization
-float Processor::Utilization() {
+double Processor::Utilization() {
     std::vector<long> cpuUtil = convertToFloat();
     
     float prevIdle = cpuUtil[3] + cpuUtil[4];
@@ -32,7 +32,7 @@ float Processor::Utilization() {
 std::vector<long> Processor::convertToFloat() {
     std::vector<long> cpuUtilDoubles;
     const std::vector<std::string> cpuStrings = LinuxParser::CpuUtilization();
-    for (int it = 0; it < (int)cpuStrings.size(); it++) {
+    for (u_int it = 0; it < cpuStrings.size(); it++) {
         try {
             cpuUtilDoubles.push_back(std::stol(cpuStrings[it]));
         } catch (const std::invalid_argument& arg) {

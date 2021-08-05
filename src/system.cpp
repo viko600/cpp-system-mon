@@ -25,7 +25,8 @@ vector<Process>& System::Processes() {
     vector<int> procs = LinuxParser::Pids();
     
     for(int pid : procs){
-        processes_.push_back(Process(pid));
+        Process process(pid);
+        processes_.emplace_back(process);
     }
     return processes_; 
 }
@@ -41,7 +42,9 @@ float System::MemoryUtilization() {
 }
 
 // TODO: Return the operating system name
-std::string System::OperatingSystem() { return string(); }
+std::string System::OperatingSystem() { 
+    return LinuxParser::OperatingSystem(); 
+}
 
 // TODO: Return the number of processes actively running on the system
 int System::RunningProcesses() { 
