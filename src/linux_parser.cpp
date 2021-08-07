@@ -285,7 +285,8 @@ long LinuxParser::UpTime(int pid) {
       for (int c = 1 ; c <= 24 ; c++){
         linestream >> value;
         if (c == 22){
-          uptime = (UpTime() - std::stol(value)) / sysconf(_SC_CLK_TCK);
+          uptime = UpTime() - std::stol(value) / sysconf(_SC_CLK_TCK);
+          return uptime;
         }
       }
     }

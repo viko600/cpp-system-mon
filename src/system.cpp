@@ -26,8 +26,11 @@ vector<Process>& System::Processes() {
     
     for(int pid : procs){
         Process process(pid);
-        processes_.emplace_back(process);
+        if ((process.Command().size() != 0) && (process.User().size() != 0) && (process.Ram().size() != 0)){
+            processes_.emplace_back(process);
+        }
     }
+
     return processes_; 
 }
 
